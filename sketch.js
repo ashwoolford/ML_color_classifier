@@ -126,22 +126,21 @@ function draw(){
 	let g = gSlider.value();
 	let b = bSlider.value();
 	background(r, g, b);
+	
+	tf.tidy(() =>{
 
-	const xs = tf.tensor2d([
+		const xs = tf.tensor2d([
 		[r/255, g/255, b/255]
-	]);
+		]);
 
-	let results = model.predict(xs);
-	let index = results.argMax(1).dataSync()[0];
+		let results = model.predict(xs);
+		let index = results.argMax(1).dataSync()[0];
 
-	let label = labelList[index];
-	labelP.html(label);
+		let label = labelList[index];
+		labelP.html(label);
+
+	});
 
 	//index.print();
-
-
-
-
-
 
 }
